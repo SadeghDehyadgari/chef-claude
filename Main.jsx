@@ -6,10 +6,18 @@ import { getRecipeFromDeepSeek } from "./ai";
 export default function Main() {
   const [ingredients, setIngredients] = React.useState([]);
   const [recipe, setRecipe] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   async function getRecipe() {
-    const recipeMarkdown = await getRecipeFromDeepSeek(ingredients);
-    setRecipe(recipeMarkdown);
+    try {
+      setLoading(true);
+      const recipeMarkdown = await getRecipeFromDeepSeek(ingredients);
+      setRecipe(recipeMarkdown);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   }
 
   function addIngredient(formData) {
@@ -33,7 +41,8 @@ export default function Main() {
         <IngredientsList ingredients={ingredients} getRecipe={getRecipe} />
       )}
 
-      {recipe && <DeepSeekRecipe recipe={recipe} />}
+      {loading && <p>Loading recipe...</p>}
+      {!loading && recipe && <DeepSeekRecipe recipe={recipe} />}
     </main>
   );
 }
