@@ -13,11 +13,11 @@ This app connects to the **OpenRouter AI API** to generate **custom recipe ideas
 ## 📁 Project Setup  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/yourusername/ai-recipe-assistant.git
+   git clone https://github.com/SadeghDehyadgari/chef-claude.git
    ```
 2. Navigate into the folder:
    ```bash
-   cd ai-recipe-assistant
+   cd chef-claude
    ```
 3. Install dependencies:
    ```bash
